@@ -10,6 +10,9 @@ interface BeerDao {
     @Upsert
     suspend fun upsertAll(beers: List<BeerEntity>)
 
-    @Query("SELECT * FROM beerentity")
+    @Query("SELECT * FROM beerentity") // TODO store DB names in constants
     fun pagingSource(): PagingSource<Int, BeerEntity>
+
+    @Query("DELETE FROM beerentity")
+    suspend fun clearAll()
 }
