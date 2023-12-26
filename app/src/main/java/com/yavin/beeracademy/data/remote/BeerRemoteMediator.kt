@@ -5,16 +5,15 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.yavin.beeracademy.data.local.BeerDB
+import com.yavin.beeracademy.data.local.BeerDatabase
 import com.yavin.beeracademy.data.local.BeerEntity
 import com.yavin.beeracademy.data.mappers.toBeerEntity
-import kotlinx.coroutines.delay
 import retrofit2.HttpException
 import java.io.IOException
 
 @OptIn(ExperimentalPagingApi::class)
-class RemoteMediator(
-    private val beerDb: BeerDB,
+class BeerRemoteMediator(
+    private val beerDb: BeerDatabase,
     private val beerApi: BeerApi
 ) : RemoteMediator<Int, BeerEntity>() {
     override suspend fun load(
