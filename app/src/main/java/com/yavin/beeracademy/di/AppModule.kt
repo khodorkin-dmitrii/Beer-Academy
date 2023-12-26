@@ -19,13 +19,14 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
 import javax.inject.Singleton
 
+@OptIn(ExperimentalPagingApi::class)
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
     @Provides
     @Singleton
-    fun provideBeerDb(@ApplicationContext context: Context): BeerDatabase {
+    fun provideBeerDatabase(@ApplicationContext context: Context): BeerDatabase {
         return Room.databaseBuilder(
             context,
             BeerDatabase::class.java,
@@ -36,19 +37,16 @@ object AppModule {
     @Provides
     @Singleton
     fun provideBeerApi(): BeerApi {
-        return Retrofit.Builder().baseUrl(BeerApi.BASE_URL)
+        return Retrofit.Builder()
+            .baseUrl(BeerApi.BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create()
     }
 
-    @OptIn(ExperimentalPagingApi::class)
     @Provides
     @Singleton
-    fun provideBeerPager(
-        beerDb: BeerDatabase,
-        beerApi: BeerApi
-    ): Pager<Int, BeerEntity> {
+    fun provideBeerPager(beerDb: BeerDatabase, beerApi: BeerApi): Pager<Int, BeerEntity> {
         return Pager(
             config = PagingConfig(pageSize = 20),
             remoteMediator = BeerRemoteMediator(
@@ -60,5 +58,4 @@ object AppModule {
             }
         )
     }
-
 }

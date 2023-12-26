@@ -66,12 +66,14 @@ fun BeerItem(
                     modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(
-                    text = beer.firstBrewed,
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.End,
-                    fontSize = 8.sp
-                )
+                beer.firstBrewed?.let {
+                    Text(
+                        text = it,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.End,
+                        fontSize = 8.sp
+                    )
+                }
             }
         }
     }
