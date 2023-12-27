@@ -5,6 +5,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.room.Room
+import com.yavin.beeracademy.data.local.BeerDao
 import com.yavin.beeracademy.data.local.BeerDatabase
 import com.yavin.beeracademy.data.local.BeerEntity
 import com.yavin.beeracademy.data.remote.BeerApi
@@ -30,7 +31,7 @@ object AppModule {
         return Room.databaseBuilder(
             context,
             BeerDatabase::class.java,
-            "beers.db" // TODO move to some constants (like in BeerApi.BASE_URL)
+            BeerDao.DB_NAME
         ).build()
     }
 

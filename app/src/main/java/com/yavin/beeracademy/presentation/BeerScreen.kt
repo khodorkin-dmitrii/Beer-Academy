@@ -15,7 +15,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.items
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import com.yavin.beeracademy.domain.Beer
 
 @Composable
@@ -44,10 +45,20 @@ fun BeerScreen(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
+//                items(
+//                    items = beers,
+//                    key = { it.id }
+//                ) { beer ->
+//                    if (beer != null) {
+//                        BeerItem(beer = beer, modifier = Modifier.fillMaxWidth())
+//                    }
+//                }
                 items(
-                    items = beers,
-                    key = { it.id }
-                ) { beer ->
+                    count = beers.itemCount,
+                    key = beers.itemKey { it.id },
+                    contentType = beers.itemContentType { "beers" }
+                ) { index ->
+                    val beer = beers[index]
                     if (beer != null) {
                         BeerItem(beer = beer, modifier = Modifier.fillMaxWidth())
                     }

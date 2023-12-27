@@ -11,9 +11,13 @@ interface BeerDao {
     @Upsert
     suspend fun upsertAll(beers: List<BeerEntity>)
 
-    @Query("SELECT * FROM beerentity")
+    @Query("SELECT * FROM BeerEntity")
     fun pagingSource(): PagingSource<Int, BeerEntity>
 
-    @Query("DELETE FROM beerentity") // TODO move table name to constants
+    @Query("DELETE FROM BeerEntity")
     suspend fun clearAll(): Int
+
+    companion object {
+        const val DB_NAME = "beers.db"
+    }
 }

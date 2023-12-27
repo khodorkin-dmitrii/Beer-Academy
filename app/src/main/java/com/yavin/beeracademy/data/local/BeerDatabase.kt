@@ -5,9 +5,8 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [BeerEntity::class],
-    version = 1
-//    ,
-//    exportSchema = false
+    version = 1,
+    exportSchema = false
 )
 abstract class BeerDatabase: RoomDatabase() {
 
