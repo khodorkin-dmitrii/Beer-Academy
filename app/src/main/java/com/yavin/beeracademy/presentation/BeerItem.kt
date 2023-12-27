@@ -5,6 +5,7 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -35,9 +36,7 @@ fun BeerItem(
 ) {
     val isDarkTheme = isSystemInDarkTheme()
     Card(
-        modifier = modifier
-            .height(160.dp)
-            .padding(horizontal = 8.dp),
+        modifier = modifier.padding(horizontal = 8.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 4.dp
         )
@@ -45,6 +44,7 @@ fun BeerItem(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .height(IntrinsicSize.Max)
                 .padding(0.dp, 16.dp, 16.dp, 16.dp)
         ) {
             AsyncImage(
@@ -52,7 +52,7 @@ fun BeerItem(
                 contentDescription = beer.name,
                 modifier = Modifier
                     .weight(1f)
-                    .height(150.dp)
+                    .height(100.dp)
             )
             Column(
                 modifier = Modifier

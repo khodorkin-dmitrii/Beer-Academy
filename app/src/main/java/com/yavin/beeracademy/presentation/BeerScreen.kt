@@ -3,6 +3,7 @@ package com.yavin.beeracademy.presentation
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -42,17 +43,10 @@ fun BeerScreen(
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
+                contentPadding = PaddingValues(0.dp, 12.dp, 0.dp, 12.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-//                items(
-//                    items = beers,
-//                    key = { it.id }
-//                ) { beer ->
-//                    if (beer != null) {
-//                        BeerItem(beer = beer, modifier = Modifier.fillMaxWidth())
-//                    }
-//                }
                 items(
                     count = beers.itemCount,
                     key = beers.itemKey { it.id },
