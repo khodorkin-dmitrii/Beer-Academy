@@ -1,4 +1,4 @@
-package com.yavin.beeracademy
+package com.yavin.beeracademy.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,8 +9,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.yavin.beeracademy.presentation.BeerScreen
-import com.yavin.beeracademy.presentation.BeerViewModel
 import com.yavin.beeracademy.ui.theme.BeerAcademyTheme
 import dagger.hilt.android.AndroidEntryPoint
 

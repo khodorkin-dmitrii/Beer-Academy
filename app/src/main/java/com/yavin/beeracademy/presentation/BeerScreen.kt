@@ -37,14 +37,17 @@ fun BeerScreen(
         modifier = Modifier.fillMaxSize()
     ) {
         if (beers.loadState.refresh is LoadState.Loading) {
-            CircularProgressIndicator(Modifier.align(Alignment.Center))
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                items(beers) { beer ->
+                items(
+                    items = beers,
+                    key = { it.id }
+                ) { beer ->
                     if (beer != null) {
                         BeerItem(beer = beer, modifier = Modifier.fillMaxWidth())
                     }

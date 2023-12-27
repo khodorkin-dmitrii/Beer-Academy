@@ -1,6 +1,9 @@
 package com.yavin.beeracademy.domain
 
+import androidx.compose.runtime.Stable
+
 // Domain level model
+@Stable
 data class Beer(
     val id: Int,
     val name: String,
