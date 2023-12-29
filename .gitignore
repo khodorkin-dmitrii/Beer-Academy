@@ -18,7 +18,6 @@ captures/
 .externalNativeBuild
 .cxx/
 .cxx
-*.apk
 output.json
 
 # IntelliJ
