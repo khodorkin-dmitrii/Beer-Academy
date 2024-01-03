@@ -1,9 +1,9 @@
 package com.yavin.beeracademy.domain
 
-import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.Stable
 
 // Domain level model
-@Immutable
+@Stable
 data class Beer(
     val id: Int,
     val name: String,

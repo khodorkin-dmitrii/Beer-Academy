@@ -16,6 +16,7 @@ class BeerRemoteMediator(
     private val beerDb: BeerDatabase,
     private val beerApi: BeerApi
 ) : RemoteMediator<Int, BeerEntity>() {
+
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, BeerEntity>
@@ -46,11 +47,13 @@ class BeerRemoteMediator(
                 if (loadType == LoadType.REFRESH) {
                     beerDb.dao.clearAll()
                 }
-                val beerEntries = beers.map { it.toBeerEntity() }
-                beerDb.dao.upsertAll(beerEntries)
+                val beerEntities = beers.map { it.toBeerEntity() }
+                beerDb.dao.upsertAll(beerEntities)
             }
 
-            MediatorResult.Success(endOfPaginationReached = beers.isEmpty())
+            MediatorResult.Success(
+                endOfPaginationReached = beers.isEmpty()
+            )
         } catch (e: IOException) {
             MediatorResult.Error(e)
         } catch (e: HttpException) {
