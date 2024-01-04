@@ -45,15 +45,15 @@ fun BeerItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(IntrinsicSize.Max)
-                .padding(0.dp, 16.dp, 16.dp, 16.dp)
+                .padding(16.dp, 16.dp, 16.dp, 16.dp)
         ) {
-            AsyncImage(
-                model = beer.imageUrl,
-                contentDescription = beer.name,
-                modifier = Modifier
-                    .weight(1f)
-                    .height(100.dp)
-            )
+//            AsyncImage(
+//                model = beer.imageUrl,
+//                contentDescription = beer.name,
+//                modifier = Modifier
+//                    .weight(1f)
+//                    .height(100.dp)
+//            )
             Column(
                 modifier = Modifier
                     .weight(3f)
