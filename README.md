@@ -1,2 +1,11 @@
 # Beer Academy
-Ahoy! This is pet project of a client-server application base on https://punkapi.com/
+Ahoy! Another pet project.  
+Simple client-server application base on https://punkapi.com/
+
+# Used frameworks and features
+- MVVM
+- Hilt
+- Room
+- Coroutines
+- Compose
+- Paging3
