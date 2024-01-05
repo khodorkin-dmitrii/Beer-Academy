@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.FilterQuality
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -26,7 +27,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.yavin.beeracademy.R
 import com.yavin.beeracademy.domain.Beer
+import com.yavin.beeracademy.ui.debugPlaceholder
 import com.yavin.beeracademy.ui.theme.BeerAcademyTheme
 
 @Composable
@@ -45,15 +48,16 @@ fun BeerItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(IntrinsicSize.Max)
-                .padding(16.dp, 16.dp, 16.dp, 16.dp)
+                .padding(8.dp, 16.dp, 16.dp, 16.dp)
         ) {
-//            AsyncImage(
-//                model = beer.imageUrl,
-//                contentDescription = beer.name,
-//                modifier = Modifier
-//                    .weight(1f)
-//                    .height(100.dp)
-//            )
+            AsyncImage(
+                model = beer.imageUrl,
+                placeholder = debugPlaceholder(R.drawable.img_preview),
+                contentDescription = beer.name,
+                filterQuality = FilterQuality.Low,
+                modifier = Modifier
+                    .weight(1f)
+            )
             Column(
                 modifier = Modifier
                     .weight(3f)
@@ -67,7 +71,6 @@ fun BeerItem(
                     maxLines = 2
                 )
 
-                Spacer(modifier = Modifier.height(2.dp))
                 Text(
                     text = beer.tagline,
                     fontStyle = FontStyle.Italic,
@@ -77,7 +80,7 @@ fun BeerItem(
                     maxLines = 1
                 )
 
-                Spacer(modifier = Modifier.height(6.dp))
+                Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = beer.description,
                     modifier = Modifier.fillMaxWidth(),
@@ -87,9 +90,9 @@ fun BeerItem(
                 )
 
                 beer.firstBrewed?.let {
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = it,
+                        text = "${beer.id} $it",
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.End,
                         fontSize = 8.sp
@@ -102,34 +105,38 @@ fun BeerItem(
 
 @Preview(uiMode = UI_MODE_NIGHT_NO)
 @Composable
-fun BeerItemDayPreview() {
+fun BeerItemDayPreview(
+    beer: Beer = Beer(
+        id = 1,
+        name = "Light Beer",
+        tagline = "This is cool beer",
+        firstBrewed = "07/2023",
+        description = "This is a description for a beer. \nThis is just a next line.",
+        imageUrl = null
+    )
+) {
     BeerAcademyTheme {
         BeerItem(
-            beer = Beer(
-                id = 1,
-                name = "Light Beer",
-                tagline = "This is cool beer",
-                firstBrewed = "07/2023",
-                description = "This is a description for a beer. \nThis is just a next line.",
-                imageUrl = null
-            ), modifier = Modifier.fillMaxWidth()
+            beer = beer, modifier = Modifier.fillMaxWidth()
         )
     }
 }
 
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
-fun BeerItemNightPreview() {
+fun BeerItemNightPreview(
+    beer: Beer = Beer(
+        id = 1,
+        name = "Dark Beer",
+        tagline = "This is cool beer",
+        firstBrewed = "07/2023",
+        description = "This is a description for a beer. \nThis is just a next line.",
+        imageUrl = null
+    )
+) {
     BeerAcademyTheme {
         BeerItem(
-            beer = Beer(
-                id = 1,
-                name = "Dark Beer",
-                tagline = "This is cool beer",
-                firstBrewed = "07/2023",
-                description = "This is a description for a beer. \nThis is just a next line.",
-                imageUrl = null
-            ), modifier = Modifier.fillMaxWidth()
+            beer = beer, modifier = Modifier.fillMaxWidth()
         )
     }
 }
