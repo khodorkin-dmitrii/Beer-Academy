@@ -5,13 +5,12 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -47,8 +46,8 @@ fun BeerItem(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(IntrinsicSize.Max)
                 .padding(8.dp, 16.dp, 16.dp, 16.dp)
+//                .padding(16.dp)
         ) {
             AsyncImage(
                 model = beer.imageUrl,
@@ -56,19 +55,20 @@ fun BeerItem(
                 contentDescription = beer.name,
                 filterQuality = FilterQuality.Low,
                 modifier = Modifier
-                    .weight(1f)
+                    .width(80.dp)
+                    .height(100.dp)
             )
             Column(
                 modifier = Modifier
-                    .weight(3f)
-                    .fillMaxHeight(),
+                    .weight(1f),
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
                     text = beer.name,
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.fillMaxWidth(),
-                    maxLines = 2
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
 
                 Text(
@@ -77,22 +77,23 @@ fun BeerItem(
                     color = if (isDarkTheme) Color.Cyan else Color.DarkGray,
                     style = MaterialTheme.typography.bodySmall,
                     modifier = Modifier.fillMaxWidth(),
-                    maxLines = 1
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
 
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = beer.description,
                     modifier = Modifier.fillMaxWidth(),
-                    style = MaterialTheme.typography.labelLarge,
-                    maxLines = 3,
+                    style = MaterialTheme.typography.bodyMedium,
+                    maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
 
                 beer.firstBrewed?.let {
-                    Spacer(modifier = Modifier.height(4.dp))
+
                     Text(
-                        text = "${beer.id} $it",
+                        text = it,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.End,
                         fontSize = 8.sp

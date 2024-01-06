@@ -31,14 +31,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-
-//        getByName("debug") {
-//            isMinifyEnabled = false
-//            proguardFiles(
-//                getDefaultProguardFile("proguard-android-optimize.txt"),
-//                "proguard-rules.pro"
-//            )
-//        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -66,7 +58,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
-//    implementation("androidx.compose.ui:ui-graphics")
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
@@ -95,7 +86,7 @@ dependencies {
     // Room
     implementation(libs.androidx.room.ktx)
     kapt(libs.androidx.room.compiler)
-//     ksp(libs.androidx.room.compiler)
+//    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.paging)
 
     testImplementation(libs.junit)

@@ -82,5 +82,15 @@ fun BeerScreenPreview() {
     ) {
         BeerItemDayPreview()
         BeerItemNightPreview()
+        BeerItemDayPreview(
+            beer = Beer(
+                id = 1,
+                name = "Beer with very long name on bottle",
+                tagline = "This is cool light beer with very long name on bottle",
+                firstBrewed = "07/2023",
+                description = "This is a description for a beer. This is just a next phrase. And this is light beer with very long name on bottle. It is so long than should take more than 3 lines heere.",
+                imageUrl = null
+            )
+        )
     }
 }
