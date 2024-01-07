@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val viewModel = hiltViewModel<BeerViewModel>()
                     val beers = viewModel.pagingFlow.collectAsLazyPagingItems()
-                    BeerScreen(beers = beers)
+                    BeerListScreen(beers = beers)
                 }
             }
         }

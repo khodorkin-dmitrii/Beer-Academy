@@ -25,7 +25,7 @@ import androidx.paging.compose.itemKey
 import com.yavin.beeracademy.domain.Beer
 
 @Composable
-fun BeerScreen(
+fun BeerListScreen(
     beers: LazyPagingItems<Beer>
 ) {
     val context = LocalContext.current
