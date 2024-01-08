@@ -1,6 +1,7 @@
 package com.yavin.beeracademy.presentation
 
 import android.content.res.Configuration
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -51,14 +52,16 @@ fun BeerListScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                items(
-                    count = beers.itemCount,
+                items(count = beers.itemCount,
                     key = beers.itemKey { it.id },
-                    contentType = beers.itemContentType { "beers" }
-                ) { index ->
+                    contentType = beers.itemContentType { "beers" }) { index ->
                     val beer = beers[index]
                     if (beer != null) {
-                        BeerItem(beer = beer, modifier = Modifier.fillMaxWidth())
+                        BeerItem(
+                            beer = beer,
+                            modifier = Modifier.fillMaxWidth(),
+                            onClick = { beerId -> Log.d("CLICK", "click on beer (${beerId})")}
+                        )
                     }
                 }
                 item {

@@ -19,15 +19,16 @@ fun Navigation() {
 //            BeerListScreen(beers = )
         }
         composable(
-            route = Screen.BeerDetailScreen.route,
+            route = Screen.BeerDetailScreen.route+"/{beerId}",
             arguments = listOf(
                 navArgument("beerId") {
                     type = NavType.IntType
-                    defaultValue = -1
                 }
             )
-        ) {entry ->
-            BeerDetailsScreen(beerId = entry.arguments?.getInt("beerId"))
+        ) { entry ->
+            entry.arguments?.getInt("beerId")?.let {
+                BeerDetailsScreen(beerId = it)
+            }
         }
     }
 }

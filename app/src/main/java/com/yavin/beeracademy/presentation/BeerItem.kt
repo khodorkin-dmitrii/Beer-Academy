@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,9 +32,11 @@ import com.yavin.beeracademy.domain.Beer
 import com.yavin.beeracademy.ui.debugPlaceholder
 import com.yavin.beeracademy.ui.theme.BeerAcademyTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BeerItem(
     beer: Beer,
+    onClick: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val isDarkTheme = isSystemInDarkTheme()
@@ -41,7 +44,8 @@ fun BeerItem(
         modifier = modifier.padding(horizontal = 8.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 4.dp
-        )
+        ),
+        onClick = { onClick(beer.id) }
     ) {
         Row(
             modifier = Modifier
@@ -118,7 +122,8 @@ fun BeerItemDayPreview(
 ) {
     BeerAcademyTheme {
         BeerItem(
-            beer = beer, modifier = Modifier.fillMaxWidth()
+            beer = beer, modifier = Modifier.fillMaxWidth(),
+            onClick = {}
         )
     }
 }
@@ -137,7 +142,8 @@ fun BeerItemNightPreview(
 ) {
     BeerAcademyTheme {
         BeerItem(
-            beer = beer, modifier = Modifier.fillMaxWidth()
+            beer = beer, modifier = Modifier.fillMaxWidth(),
+            onClick = {}
         )
     }
 }
