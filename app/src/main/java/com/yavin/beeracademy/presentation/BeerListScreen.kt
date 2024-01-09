@@ -24,6 +24,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import com.yavin.beeracademy.domain.Beer
+import com.yavin.beeracademy.ui.theme.BeerAcademyTheme
 
 @Composable
 fun BeerListScreen(
@@ -78,26 +79,33 @@ fun BeerListScreen(
     }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(
+    showBackground = true,
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showSystemUi = true,
+    backgroundColor = 0xFF1A191C
+)
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun BeerScreenPreview() {
-    Column(
-        modifier = Modifier.padding(0.dp, 12.dp, 0.dp, 12.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        BeerItemDayPreview()
-        BeerItemNightPreview()
-        BeerItemDayPreview(
-            beer = Beer(
-                id = 1,
-                name = "Beer with very long name on bottle",
-                tagline = "This is cool light beer with very long name on bottle",
-                firstBrewed = "07/2023",
-                description = "This is a description for a beer. This is just a next phrase. And this is light beer with very long name on bottle. It is so long than should take more than 3 lines here.",
-                imageUrl = null
+    BeerAcademyTheme {
+        Column(
+            modifier = Modifier.fillMaxSize().padding(0.dp, 12.dp, 0.dp, 12.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            BeerItemDayPreview()
+            BeerItemNightPreview()
+            BeerItemDayPreview(
+                beer = Beer(
+                    id = 1,
+                    name = "Beer with very long name on bottle",
+                    tagline = "This is cool light beer with very long name on bottle",
+                    firstBrewed = "07/2023",
+                    description = "This is a description for a beer. This is just a next phrase. And this is light beer with very long name on bottle. It is so long than should take more than 3 lines here.",
+                    imageUrl = null
+                )
             )
-        )
+        }
     }
 }

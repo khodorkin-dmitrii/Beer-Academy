@@ -21,7 +21,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.FilterQuality
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.font.FontStyle
@@ -36,6 +35,8 @@ import com.yavin.beeracademy.R
 import com.yavin.beeracademy.domain.Beer
 import com.yavin.beeracademy.ui.debugPlaceholder
 import com.yavin.beeracademy.ui.theme.BeerAcademyTheme
+import com.yavin.beeracademy.ui.theme.Purple40
+import com.yavin.beeracademy.ui.theme.Teal100
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -79,7 +80,7 @@ fun BeerItem(
                 Text(
                     text = beer.tagline,
                     fontStyle = FontStyle.Italic,
-                    color = if (isDarkTheme) Color.Cyan else Color.DarkGray,
+                    color = if (isDarkTheme) Teal100 else Purple40,
                     style = MaterialTheme.typography.bodySmall,
                     modifier = Modifier.fillMaxWidth(),
                     maxLines = 1,
@@ -153,7 +154,8 @@ fun BeerItemDayPreview(
 ) {
     BeerAcademyTheme {
         BeerItem(
-            beer = beer, modifier = Modifier.fillMaxWidth(),
+            beer = beer,
+            modifier = Modifier.fillMaxWidth(),
             onClick = {}
         )
     }
@@ -173,7 +175,8 @@ fun BeerItemNightPreview(
 ) {
     BeerAcademyTheme {
         BeerItem(
-            beer = beer, modifier = Modifier.fillMaxWidth(),
+            beer = beer,
+            modifier = Modifier.fillMaxWidth(),
             onClick = {}
         )
     }
