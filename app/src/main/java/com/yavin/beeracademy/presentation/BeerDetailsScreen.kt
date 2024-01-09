@@ -2,11 +2,13 @@ package com.yavin.beeracademy.presentation
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,10 +28,12 @@ import com.yavin.beeracademy.ui.theme.BeerAcademyTheme
 @Composable
 fun BeerDetailsScreen(beer: Beer) {
     val isDarkTheme = isSystemInDarkTheme()
-
+    val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
+            .height(IntrinsicSize.Max)
+            .verticalScroll(scrollState, enabled = true)
             .padding(16.dp)
     ) {
 
@@ -80,9 +84,10 @@ fun BeerDetailsScreen(beer: Beer) {
         )
     }
 
+
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun BeerDetailsScreenPreview(
     beer: Beer = Beer(
