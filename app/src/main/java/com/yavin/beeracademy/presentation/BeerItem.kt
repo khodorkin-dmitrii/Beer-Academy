@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -19,6 +19,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.FilterQuality
@@ -52,13 +53,14 @@ fun BeerItem(
         onClick = { onClick(beer.id) }
     ) {
         Row(
-            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp, 16.dp, 16.dp, 16.dp)
         ) {
             AsyncImageWithPreview(
                 url = beer.imageUrl,
+                modifier = Modifier.size(90.dp),
                 contentDescription = beer.name
             )
             Column(
@@ -107,16 +109,18 @@ fun BeerItem(
 }
 
 @Composable
-fun AsyncImageWithPreview(url: String?, contentDescription: String = "beer_image") {
+fun AsyncImageWithPreview(
+    url: String?,
+    modifier: Modifier = Modifier,
+    contentDescription: String = "beer_image"
+) {
     if (LocalInspectionMode.current) {
         AsyncImage(
             model = url,
             placeholder = debugPlaceholder(R.drawable.img_preview),
             contentDescription = contentDescription,
             filterQuality = FilterQuality.Low,
-            modifier = Modifier
-                .width(80.dp)
-                .height(90.dp)
+            modifier = modifier
         )
     } else {
         SubcomposeAsyncImage(
@@ -130,10 +134,7 @@ fun AsyncImageWithPreview(url: String?, contentDescription: String = "beer_image
             },
             contentDescription = contentDescription,
             filterQuality = FilterQuality.Low,
-            modifier = Modifier
-                .width(80.dp)
-                .height(100.dp)
-
+            modifier = modifier
         )
     }
 }
