@@ -1,6 +1,7 @@
 package com.yavin.beeracademy.presentation
 
 import android.content.res.Configuration
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,8 +26,9 @@ import androidx.paging.compose.itemKey
 import com.yavin.beeracademy.domain.Beer
 
 @Composable
-fun BeerScreen(
-    beers: LazyPagingItems<Beer>
+fun BeerListScreen(
+    beers: LazyPagingItems<Beer>,
+    onItemClick: (Int) -> Unit
 ) {
     val context = LocalContext.current
     LaunchedEffect(key1 = beers.loadState) {
@@ -51,14 +53,19 @@ fun BeerScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                items(
-                    count = beers.itemCount,
+                items(count = beers.itemCount,
                     key = beers.itemKey { it.id },
-                    contentType = beers.itemContentType { "beers" }
-                ) { index ->
+                    contentType = beers.itemContentType { "beers" }) { index ->
                     val beer = beers[index]
                     if (beer != null) {
-                        BeerItem(beer = beer, modifier = Modifier.fillMaxWidth())
+                        BeerItem(
+                            beer = beer,
+                            modifier = Modifier.fillMaxWidth(),
+                            onClick = { beerId ->
+                                onItemClick(beerId)
+                                Log.d("CLICK", "click on beer (${beerId})")
+                            }
+                        )
                     }
                 }
                 item {
@@ -72,7 +79,7 @@ fun BeerScreen(
 }
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun BeerScreenPreview() {
     Column(
@@ -88,7 +95,7 @@ fun BeerScreenPreview() {
                 name = "Beer with very long name on bottle",
                 tagline = "This is cool light beer with very long name on bottle",
                 firstBrewed = "07/2023",
-                description = "This is a description for a beer. This is just a next phrase. And this is light beer with very long name on bottle. It is so long than should take more than 3 lines heere.",
+                description = "This is a description for a beer. This is just a next phrase. And this is light beer with very long name on bottle. It is so long than should take more than 3 lines here.",
                 imageUrl = null
             )
         )

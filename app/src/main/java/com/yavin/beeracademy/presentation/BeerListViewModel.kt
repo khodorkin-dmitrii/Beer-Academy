@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @HiltViewModel
-class BeerViewModel @Inject constructor(
+class BeerListViewModel @Inject constructor(
     pager: Pager<Int, BeerEntity>
 ) : ViewModel() {
     val pagingFlow = pager
