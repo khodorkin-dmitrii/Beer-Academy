@@ -3,7 +3,7 @@ Ahoy! Another pet project.
 Simple client-server application base on https://punkapi.com/
 
 ### Latest build
-https://www.dropbox.com/scl/fo/4jmlnx5g67773xlpjyefx/h?rlkey=0uzeaamum4jd7xixbjrkohamz&dl=0
+You can find the latest build in the releases section.
 
 # Used frameworks and features
 - MVVM
