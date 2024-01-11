@@ -41,18 +41,12 @@ import com.yavin.beeracademy.ui.theme.Teal100
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BeerItem(
-    beer: Beer,
-    onClick: (Int) -> Unit,
-    modifier: Modifier = Modifier
+    beer: Beer, onClick: (Int) -> Unit, modifier: Modifier = Modifier
 ) {
     val isDarkTheme = isSystemInDarkTheme()
-    Card(
-        modifier = modifier.padding(horizontal = 8.dp),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 4.dp
-        ),
-        onClick = { onClick(beer.id) }
-    ) {
+    Card(modifier = modifier.padding(horizontal = 8.dp), elevation = CardDefaults.cardElevation(
+        defaultElevation = 4.dp
+    ), onClick = { onClick(beer.id) }) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
@@ -60,14 +54,10 @@ fun BeerItem(
                 .padding(8.dp, 16.dp, 16.dp, 16.dp)
         ) {
             AsyncImageWithPreview(
-                url = beer.imageUrl,
-                modifier = Modifier.size(90.dp),
-                contentDescription = beer.name
+                url = beer.imageUrl, modifier = Modifier.size(90.dp), contentDescription = beer.name
             )
             Column(
-                modifier = Modifier
-                    .weight(1f),
-                verticalArrangement = Arrangement.Center
+                modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center
             ) {
                 Text(
                     text = beer.name,
@@ -111,9 +101,7 @@ fun BeerItem(
 
 @Composable
 fun AsyncImageWithPreview(
-    url: String?,
-    modifier: Modifier = Modifier,
-    contentDescription: String = "beer_image"
+    url: String?, modifier: Modifier = Modifier, contentDescription: String = "beer_image"
 ) {
     if (LocalInspectionMode.current) {
         AsyncImage(
@@ -149,15 +137,13 @@ fun BeerItemDayPreview(
         tagline = "This is cool beer",
         firstBrewed = "07/2023",
         description = "This is a description for a beer. \nThis is just a next line.",
-        imageUrl = null
+        imageUrl = null,
+        foodPairing = emptyList(),
+        brewersTips = ""
     )
 ) {
     BeerAcademyTheme {
-        BeerItem(
-            beer = beer,
-            modifier = Modifier.fillMaxWidth(),
-            onClick = {}
-        )
+        BeerItem(beer = beer, modifier = Modifier.fillMaxWidth(), onClick = {})
     }
 }
 
@@ -170,14 +156,12 @@ fun BeerItemNightPreview(
         tagline = "This is cool beer",
         firstBrewed = "07/2023",
         description = "This is a description for a beer. \nThis is just a next line.",
-        imageUrl = null
+        imageUrl = null,
+        foodPairing = emptyList(),
+        brewersTips = ""
     )
 ) {
     BeerAcademyTheme {
-        BeerItem(
-            beer = beer,
-            modifier = Modifier.fillMaxWidth(),
-            onClick = {}
-        )
+        BeerItem(beer = beer, modifier = Modifier.fillMaxWidth(), onClick = {})
     }
 }

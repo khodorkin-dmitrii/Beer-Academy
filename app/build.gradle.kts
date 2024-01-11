@@ -95,6 +95,8 @@ dependencies {
 
     implementation (libs.androidx.core.splashscreen)
 
+    implementation (libs.gson)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

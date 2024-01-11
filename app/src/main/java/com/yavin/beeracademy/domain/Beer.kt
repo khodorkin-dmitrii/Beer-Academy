@@ -10,5 +10,7 @@ data class Beer(
     val tagline: String,
     val description: String,
     val firstBrewed: String?,
-    val imageUrl: String?
+    val imageUrl: String?,
+    val foodPairing: List<String>,
+    val brewersTips: String
 )

@@ -7,5 +7,7 @@ data class BeerDto(
     val tagline: String,
     val description: String,
     val first_brewed: String?,
-    val image_url: String?
+    val image_url: String?,
+    val food_pairing: List<String>,
+    val brewers_tips: String
 )
