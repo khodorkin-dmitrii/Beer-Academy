@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Beer Academy</string>
+
+    <string name="title_food_pairing">Food pairing</string>
+    <string name="title_brewers_tips">Brewers tips:</string>
+    <string name="content_description_beer_image">Beer image</string>
+    <string name="content_description_details_back_button">Details back button</string>
+    <string name="content_description_food_icon">Food icon</string>
 </resources>

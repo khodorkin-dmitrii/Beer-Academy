@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -128,11 +129,11 @@ fun BeerDetailsScreen(
         ) {
             Column {
                 Text(
-                    text = "Brewers Tips:",
+                    text = stringResource(R.string.title_brewers_tips),
                     fontStyle = FontStyle.Italic,
                     color = if (isDarkTheme) Teal100 else Purple40,
                     modifier = Modifier.padding(12.dp, 12.dp, 12.dp, 4.dp)
-                ) // TODO localize
+                )
                 Text(
                     text = beer.brewersTips,
                     modifier = Modifier
@@ -152,7 +153,7 @@ fun BeerDetailsScreen(
         ) {
             Icon(
                 imageVector = Icons.Filled.ArrowBack,
-                contentDescription = "Localized description",
+                contentDescription = stringResource(R.string.content_description_details_back_button),
                 tint = MaterialTheme.colorScheme.inverseSurface
             )
         }
@@ -180,11 +181,11 @@ fun FoodPairing(points: List<String>, isDarkTheme: Boolean = false) {
     if (points.isNotEmpty()) {
         Column {
             Text(
-                text = "Food Pairing:",
+                text = stringResource(R.string.title_food_pairing),
                 fontStyle = FontStyle.Italic,
                 color = if (isDarkTheme) Teal100 else Purple40,
                 modifier = Modifier.padding(12.dp, 12.dp, 12.dp, 4.dp)
-            ) // TODO localize
+            )
             points.forEach { point ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -192,13 +193,12 @@ fun FoodPairing(points: List<String>, isDarkTheme: Boolean = false) {
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.baseline_cookie_12),
-                        contentDescription = "", // TODO localize
+                        contentDescription = stringResource(R.string.content_description_food_icon),
                         tint = if (isDarkTheme) Teal100 else Purple40,
                         modifier = Modifier.padding(horizontal = 6.dp)
                     )
                     Text(text = point)
                 }
-
             }
         }
     }

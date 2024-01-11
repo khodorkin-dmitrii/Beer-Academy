@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.FilterQuality
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -54,7 +55,7 @@ fun BeerItem(
                 .padding(8.dp, 16.dp, 16.dp, 16.dp)
         ) {
             AsyncImageWithPreview(
-                url = beer.imageUrl, modifier = Modifier.size(90.dp), contentDescription = beer.name
+                url = beer.imageUrl, modifier = Modifier.size(90.dp)
             )
             Column(
                 modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center
@@ -101,8 +102,10 @@ fun BeerItem(
 
 @Composable
 fun AsyncImageWithPreview(
-    url: String?, modifier: Modifier = Modifier, contentDescription: String = "beer_image"
+    url: String?,
+    modifier: Modifier = Modifier
 ) {
+    val contentDescription: String = stringResource(R.string.content_description_beer_image)
     if (LocalInspectionMode.current) {
         AsyncImage(
             model = url,
@@ -128,6 +131,7 @@ fun AsyncImageWithPreview(
     }
 }
 
+//region Previews
 @Preview(uiMode = UI_MODE_NIGHT_NO)
 @Composable
 fun BeerItemDayPreview(
@@ -165,3 +169,5 @@ fun BeerItemNightPreview(
         BeerItem(beer = beer, modifier = Modifier.fillMaxWidth(), onClick = {})
     }
 }
+
+// endregion
