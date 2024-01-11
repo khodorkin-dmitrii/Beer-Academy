@@ -126,7 +126,7 @@ fun BeerDetailsScreen(
             Icon(
                 imageVector = Icons.Filled.ArrowBack,
                 contentDescription = "Localized description",
-                tint = MaterialTheme.colorScheme.inverseOnSurface
+                tint = MaterialTheme.colorScheme.inversePrimary
             )
         }
     }
