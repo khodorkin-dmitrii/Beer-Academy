@@ -32,7 +32,8 @@ object AppModule {
             context,
             BeerDatabase::class.java,
             BeerDao.DB_NAME
-        ).build()
+        ).fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides
