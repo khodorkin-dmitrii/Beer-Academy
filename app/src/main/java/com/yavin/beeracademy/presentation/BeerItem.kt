@@ -36,7 +36,7 @@ import com.yavin.beeracademy.R
 import com.yavin.beeracademy.domain.Beer
 import com.yavin.beeracademy.ui.debugPlaceholder
 import com.yavin.beeracademy.ui.theme.BeerAcademyTheme
-import com.yavin.beeracademy.ui.theme.Purple40
+import com.yavin.beeracademy.ui.theme.BrightPurple40
 import com.yavin.beeracademy.ui.theme.Teal100
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -71,7 +71,7 @@ fun BeerItem(
                 Text(
                     text = beer.tagline,
                     fontStyle = FontStyle.Italic,
-                    color = if (isDarkTheme) Teal100 else Purple40,
+                    color = if (isDarkTheme) Teal100 else BrightPurple40,
                     style = MaterialTheme.typography.bodySmall,
                     modifier = Modifier.fillMaxWidth(),
                     maxLines = 1,
@@ -90,7 +90,9 @@ fun BeerItem(
                 beer.firstBrewed?.let {
                     Text(
                         text = it,
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 2.dp),
                         textAlign = TextAlign.End,
                         fontSize = 8.sp
                     )

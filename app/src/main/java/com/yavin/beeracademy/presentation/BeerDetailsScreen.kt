@@ -39,7 +39,7 @@ import com.yavin.beeracademy.ui.debugPlaceholder
 import com.yavin.beeracademy.ui.theme.BeerAcademyTheme
 import com.yavin.beeracademy.ui.theme.BlueGray01x50
 import com.yavin.beeracademy.ui.theme.BlueGray50
-import com.yavin.beeracademy.ui.theme.Purple40
+import com.yavin.beeracademy.ui.theme.BrightPurple40
 import com.yavin.beeracademy.ui.theme.Teal100
 
 @Composable
@@ -96,7 +96,7 @@ fun BeerDetailsScreen(
         Text(
             text = beer.tagline,
             fontStyle = FontStyle.Italic,
-            color = if (isDarkTheme) Teal100 else Purple40,
+            color = if (isDarkTheme) Teal100 else BrightPurple40,
             style = MaterialTheme.typography.titleMedium,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth(),
@@ -131,7 +131,7 @@ fun BeerDetailsScreen(
                 Text(
                     text = stringResource(R.string.title_brewers_tips),
                     fontStyle = FontStyle.Italic,
-                    color = if (isDarkTheme) Teal100 else Purple40,
+                    color = if (isDarkTheme) Teal100 else BrightPurple40,
                     modifier = Modifier.padding(12.dp, 12.dp, 12.dp, 4.dp)
                 )
                 Text(
@@ -183,7 +183,7 @@ fun FoodPairing(points: List<String>, isDarkTheme: Boolean = false) {
             Text(
                 text = stringResource(R.string.title_food_pairing),
                 fontStyle = FontStyle.Italic,
-                color = if (isDarkTheme) Teal100 else Purple40,
+                color = if (isDarkTheme) Teal100 else BrightPurple40,
                 modifier = Modifier.padding(12.dp, 12.dp, 12.dp, 4.dp)
             )
             points.forEach { point ->
@@ -192,9 +192,9 @@ fun FoodPairing(points: List<String>, isDarkTheme: Boolean = false) {
                     modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp)
                 ) {
                     Icon(
-                        painter = painterResource(id = R.drawable.baseline_cookie_12),
+                        painter = painterResource(id = R.drawable.baseline_cookie_18),
                         contentDescription = stringResource(R.string.content_description_food_icon),
-                        tint = if (isDarkTheme) Teal100 else Purple40,
+                        tint = if (isDarkTheme) Teal100 else BrightPurple40,
                         modifier = Modifier.padding(horizontal = 6.dp)
                     )
                     Text(text = point)
