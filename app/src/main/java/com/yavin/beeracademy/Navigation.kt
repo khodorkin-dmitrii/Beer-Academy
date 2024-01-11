@@ -51,7 +51,11 @@ fun Navigation() {
                 LaunchedEffect(key1 = beerId) {
                     beer = viewModel.getBeerById(beerId)
                 }
-                beer?.let { BeerDetailsScreen(beer = it) }
+                beer?.let {
+                    BeerDetailsScreen(
+                        beer = it,
+                        onBackPress = { navController.popBackStack() })
+                }
             }
         }
     }

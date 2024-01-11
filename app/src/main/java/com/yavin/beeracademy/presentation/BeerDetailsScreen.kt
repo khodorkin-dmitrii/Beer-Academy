@@ -22,7 +22,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
@@ -42,9 +41,13 @@ import com.yavin.beeracademy.ui.theme.Teal100
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BeerDetailsScreen(beer: Beer) {
+fun BeerDetailsScreen(
+    beer: Beer,
+    onBackPress: () -> Unit
+) {
     val isDarkTheme = isSystemInDarkTheme()
     val scrollState = rememberScrollState()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -52,17 +55,11 @@ fun BeerDetailsScreen(beer: Beer) {
             .verticalScroll(scrollState, enabled = true)
             .padding(12.dp)
     ) {
-        TopAppBar(title = {}, navigationIcon = {
-            IconButton(onClick = { /* do something */ }) {
-                Icon(
-                    imageVector = Icons.Filled.ArrowBack,
-                    contentDescription = "Localized description"
-                )
-            }
-        })
+
         ThemeBox(
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(horizontal = 44.dp)
         ) {
             Column(modifier = Modifier.padding(8.dp)) {
                 AsyncImage(
@@ -71,7 +68,7 @@ fun BeerDetailsScreen(beer: Beer) {
                     contentDescription = beer.name,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(325.dp)
+                        .height(300.dp)
                 )
                 beer.firstBrewed?.let {
                     Spacer(modifier = Modifier.height(4.dp))
@@ -120,6 +117,19 @@ fun BeerDetailsScreen(beer: Beer) {
             )
         }
     }
+
+    Box {
+        IconButton(
+            onClick = { onBackPress.invoke() },
+            modifier = Modifier.padding(horizontal = 4.dp, vertical = 8.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Filled.ArrowBack,
+                contentDescription = "Localized description",
+                tint = MaterialTheme.colorScheme.inverseOnSurface
+            )
+        }
+    }
 }
 
 @Composable
@@ -156,7 +166,7 @@ fun BeerDetailsScreenNightPreview(
     )
 ) {
     BeerAcademyTheme {
-        BeerDetailsScreen(beer = beer)
+        BeerDetailsScreen(beer = beer) {}
     }
 }
 
@@ -175,7 +185,7 @@ fun BeerDetailsScreenDayPreview(
     )
 ) {
     BeerAcademyTheme {
-        BeerDetailsScreen(beer = beer)
+        BeerDetailsScreen(beer = beer) {}
     }
 }
 
