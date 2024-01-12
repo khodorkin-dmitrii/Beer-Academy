@@ -9,5 +9,5 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="background_day">#FCFAFB</color>
-    <color name="background_night">#212024</color>
+    <color name="background_night">#303030</color>
 </resources>
