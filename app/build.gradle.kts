@@ -14,8 +14,8 @@ android {
         applicationId = "com.yavin.beeracademy"
         minSdk = 26
         targetSdk = 34
-        versionCode = 3
-        versionName = "1.2"
+        versionCode = 4
+        versionName = "1.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -30,6 +30,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        debug {
+            applicationIdSuffix = ".d"
+            versionNameSuffix = "-debug"
         }
     }
     compileOptions {
@@ -91,11 +95,10 @@ dependencies {
 
     implementation(libs.androidx.navigation.compose)
 
-    implementation (libs.accompanist.systemuicontroller)
-
-    implementation (libs.androidx.core.splashscreen)
-
-    implementation (libs.gson)
+    implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.gson)
+    debugImplementation(libs.leakcanary.android)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

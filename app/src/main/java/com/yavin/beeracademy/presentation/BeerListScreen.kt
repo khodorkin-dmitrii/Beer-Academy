@@ -76,8 +76,14 @@ fun BeerListScreen(
                 }
             }
         }
+
+//        if (isDebuggable(context)) {
+//            DebugRepeatBox()
+//        }
     }
 }
+
+
 
 @Preview(
     showBackground = true,
@@ -90,7 +96,9 @@ fun BeerListScreen(
 fun BeerScreenPreview() {
     BeerAcademyTheme {
         Column(
-            modifier = Modifier.fillMaxSize().padding(0.dp, 12.dp, 0.dp, 12.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(0.dp, 12.dp, 0.dp, 12.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {

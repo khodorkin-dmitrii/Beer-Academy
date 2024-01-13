@@ -44,8 +44,7 @@ import com.yavin.beeracademy.ui.theme.Teal100
 
 @Composable
 fun BeerDetailsScreen(
-    beer: Beer,
-    onBackPress: () -> Unit
+    beer: Beer, onBackPress: () -> Unit
 ) {
     val isDarkTheme = isSystemInDarkTheme()
     val scrollState = rememberScrollState()
@@ -106,8 +105,7 @@ fun BeerDetailsScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         ThemeBox(
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text(
                 text = beer.description,
@@ -124,8 +122,7 @@ fun BeerDetailsScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         ThemeBox(
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
         ) {
             Column {
                 Text(
@@ -148,7 +145,7 @@ fun BeerDetailsScreen(
 
     Box {
         IconButton(
-            onClick = { onBackPress.invoke() },
+            onClick = onBackPress,
             modifier = Modifier.padding(horizontal = 4.dp, vertical = 8.dp)
         ) {
             Icon(
@@ -162,17 +159,14 @@ fun BeerDetailsScreen(
 
 @Composable
 fun ThemeBox(
-    modifier: Modifier = Modifier,
-    content: @Composable BoxScope.() -> Unit
+    modifier: Modifier = Modifier, content: @Composable BoxScope.() -> Unit
 ) {
     val isDarkTheme = isSystemInDarkTheme()
     Box(
-        modifier = modifier
-            .background(
+        modifier = modifier.background(
                 color = if (isDarkTheme) BlueGray01x50 else BlueGray50,
                 shape = RoundedCornerShape(16.dp)
-            ),
-        content = content
+            ), content = content
     )
 }
 
