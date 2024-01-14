@@ -2,6 +2,8 @@ package com.yavin.beeracademy.presentation
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -26,14 +28,19 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
-        val orientation = resources.configuration.orientation
 
+        var keepSplashOnScreen = true
+        val delay = 1000L
+        installSplashScreen().setKeepOnScreenCondition { keepSplashOnScreen }
+        Handler(Looper.getMainLooper()).postDelayed({ keepSplashOnScreen = false }, delay)
+
+        val orientation = resources.configuration.orientation
         WindowCompat.setDecorFitsSystemWindows(
             window,
             // this help to set correct background for camera inset area for both orientations
             orientation == Configuration.ORIENTATION_PORTRAIT
         )
+
         setContent {
             BeerAcademyTheme(
                 dynamicColor = false
