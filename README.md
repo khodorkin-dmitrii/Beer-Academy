@@ -1,7 +1,7 @@
 # Beer Academy
 
 Ahoy! Another pet project.  
-Simple client-server application base on https://punkapi.com/
+Client-server application base on https://punkapi.com/
 
 ### Latest build
 
