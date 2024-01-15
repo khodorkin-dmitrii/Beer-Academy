@@ -9,7 +9,7 @@ You can find the latest build in the releases section.
 
 ### Screenshots
 
-![alt text](https://github.com/khodorkin-dmitrii/Beer-Academy/blob/master/screenshots/Screenshot_pan_small.png)
+![alt text](https://github.com/khodorkin-dmitrii/Beer-Academy/blob/master/images/Screenshot_pan_small.png)
 
 # Used frameworks and features
 
