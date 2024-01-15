@@ -1,9 +1,11 @@
 package com.yavin.beeracademy.presentation
 
+import android.animation.ObjectAnimator
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -15,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import com.yavin.beeracademy.Navigation
@@ -33,6 +36,15 @@ class MainActivity : ComponentActivity() {
         val delay = 1000L
         installSplashScreen().setKeepOnScreenCondition { keepSplashOnScreen }
         Handler(Looper.getMainLooper()).postDelayed({ keepSplashOnScreen = false }, delay)
+        installSplashScreen().setOnExitAnimationListener { splashScreen ->
+            ObjectAnimator.ofFloat(
+                splashScreen.view, View.ALPHA, 1f, 0f
+            ).apply {
+                duration = 300L
+                doOnEnd { splashScreen.remove() }
+                start()
+            }
+        }
 
         val orientation = resources.configuration.orientation
         WindowCompat.setDecorFitsSystemWindows(
@@ -47,8 +59,7 @@ class MainActivity : ComponentActivity() {
             ) {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
                     Box(Modifier.windowInsetsPadding(WindowInsets.safeContent)) {
                         Navigation()
