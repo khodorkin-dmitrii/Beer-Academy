@@ -5,6 +5,7 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -45,6 +46,7 @@ import com.yavin.beeracademy.domain.Beer
 import com.yavin.beeracademy.ui.debugPlaceholder
 import com.yavin.beeracademy.ui.theme.BeerAcademyTheme
 import com.yavin.beeracademy.ui.theme.BrightPurple40
+import com.yavin.beeracademy.ui.theme.PurpleGrey80
 import com.yavin.beeracademy.ui.theme.Teal100
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -129,22 +131,20 @@ fun AsyncImageWithPreview(
         var isImageLoaded by remember { mutableStateOf(false) }
 
         Box(modifier = modifier) {
-
             SubcomposeAsyncImage(
                 model = url,
                 onLoading = {
-                    isImageLoading = true
                     isImageLoaded = false
+                    isImageLoading = true
                 },
                 onSuccess = {
                     isImageLoaded = true
                     isImageLoading = false
                 },
                 onError = {
-                    isImageLoading = false
                     isImageLoaded = false
+                    isImageLoading = false
                 },
-                alpha = if (isImageLoaded) 1f else 0f,
                 contentDescription = contentDescription,
                 filterQuality = FilterQuality.Low,
                 modifier = modifier
@@ -152,10 +152,11 @@ fun AsyncImageWithPreview(
 
             AnimatedVisibility(
                 visible = isImageLoading,
-                exit = fadeOut(animationSpec = tween(500))
+                exit = fadeOut(animationSpec = tween(300))
             ) {
                 CircularProgressIndicator(
                     modifier = Modifier
+                        .background(color = PurpleGrey80)
                         .fillMaxSize()
                         .padding(16.dp)
                 )
