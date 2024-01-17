@@ -9,17 +9,25 @@ import android.widget.ScrollView
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.keyframes
 import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -33,6 +41,32 @@ import androidx.compose.ui.viewinterop.AndroidView
 
 fun isDebuggable(context: Context) =
     context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
+
+@Composable
+fun AnimatedAlphaBox() {
+    var alphaValue by remember { mutableStateOf(1f) }
+
+    // Анимированное значение alpha
+    val animatedAlphaValue by animateFloatAsState(
+        targetValue = alphaValue,
+        animationSpec = tween(durationMillis = 1000),
+        label = ""
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .alpha(animatedAlphaValue)
+            .background(MaterialTheme.colorScheme.primary)
+    )
+
+    // Изменение значения alpha по нажатию кнопки или в другом месте по вашему усмотрению
+    Button(onClick = {
+        alphaValue = if (alphaValue == 1f) 0.2f else 1f
+    }) {
+        Text("Toggle Alpha")
+    }
+}
 
 @Composable
 fun DebugRepeatBox() {

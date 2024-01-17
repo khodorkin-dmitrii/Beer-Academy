@@ -2,8 +2,12 @@ package com.yavin.beeracademy.presentation
 
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,6 +23,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.FilterQuality
@@ -117,19 +125,42 @@ fun AsyncImageWithPreview(
             modifier = modifier
         )
     } else {
-        SubcomposeAsyncImage(
-            model = url,
-            loading = {
+        var isImageLoading by remember { mutableStateOf(false) }
+        var isImageLoaded by remember { mutableStateOf(false) }
+
+        Box(modifier = modifier) {
+
+            SubcomposeAsyncImage(
+                model = url,
+                onLoading = {
+                    isImageLoading = true
+                    isImageLoaded = false
+                },
+                onSuccess = {
+                    isImageLoaded = true
+                    isImageLoading = false
+                },
+                onError = {
+                    isImageLoading = false
+                    isImageLoaded = false
+                },
+                alpha = if (isImageLoaded) 1f else 0f,
+                contentDescription = contentDescription,
+                filterQuality = FilterQuality.Low,
+                modifier = modifier
+            )
+
+            AnimatedVisibility(
+                visible = isImageLoading,
+                exit = fadeOut(animationSpec = tween(500))
+            ) {
                 CircularProgressIndicator(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(16.dp)
                 )
-            },
-            contentDescription = contentDescription,
-            filterQuality = FilterQuality.Low,
-            modifier = modifier
-        )
+            }
+        }
     }
 }
 
