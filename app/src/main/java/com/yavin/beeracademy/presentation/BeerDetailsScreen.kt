@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.yavin.beeracademy.R
 import com.yavin.beeracademy.domain.Beer
-import com.yavin.beeracademy.ui.debugPlaceholder
+import com.yavin.beeracademy.presentation.components.debugPlaceholder
 import com.yavin.beeracademy.ui.theme.BeerAcademyTheme
 import com.yavin.beeracademy.ui.theme.BlueGray01x50
 import com.yavin.beeracademy.ui.theme.BlueGray50

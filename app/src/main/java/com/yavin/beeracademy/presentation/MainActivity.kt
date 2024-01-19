@@ -21,8 +21,8 @@ import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import com.yavin.beeracademy.Navigation
-import com.yavin.beeracademy.ui.DebugRepeatBox
-import com.yavin.beeracademy.ui.isDebuggable
+import com.yavin.beeracademy.presentation.components.DebugRepeatBox
+import com.yavin.beeracademy.presentation.components.isDebuggable
 import com.yavin.beeracademy.ui.theme.BeerAcademyTheme
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -24,6 +24,9 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import com.yavin.beeracademy.domain.Beer
+import com.yavin.beeracademy.presentation.components.BeerItem
+import com.yavin.beeracademy.presentation.components.BeerItemDayPreview
+import com.yavin.beeracademy.presentation.components.BeerItemNightPreview
 import com.yavin.beeracademy.ui.theme.BeerAcademyTheme
 
 @Composable
