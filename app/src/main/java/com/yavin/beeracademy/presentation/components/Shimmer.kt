@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun SkeletonItemView(
+fun Shimmer(
     width: Dp,
     height: Dp,
     modifier: Modifier = Modifier,

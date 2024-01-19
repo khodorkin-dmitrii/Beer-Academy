@@ -27,6 +27,7 @@ import com.yavin.beeracademy.domain.Beer
 import com.yavin.beeracademy.presentation.components.BeerItem
 import com.yavin.beeracademy.presentation.components.BeerItemDayPreview
 import com.yavin.beeracademy.presentation.components.BeerItemNightPreview
+import com.yavin.beeracademy.presentation.components.ShimmerRow
 import com.yavin.beeracademy.ui.theme.BeerAcademyTheme
 
 @Composable
@@ -49,11 +50,11 @@ fun BeerListScreen(
         modifier = Modifier.fillMaxSize()
     ) {
         if (beers.loadState.refresh is LoadState.Loading) {
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            ShimmerRow()
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(0.dp, 12.dp, 0.dp, 12.dp),
+                contentPadding = PaddingValues(vertical = 12.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
@@ -78,15 +79,10 @@ fun BeerListScreen(
                     }
                 }
             }
-        }
 
-//        if (isDebuggable(context)) {
-//            DebugRepeatBox()
-//        }
+        }
     }
 }
-
-
 
 @Preview(
     showBackground = true,
@@ -96,7 +92,7 @@ fun BeerListScreen(
 )
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun BeerScreenPreview() {
+private fun BeerScreenPreview() {
     BeerAcademyTheme {
         Column(
             modifier = Modifier

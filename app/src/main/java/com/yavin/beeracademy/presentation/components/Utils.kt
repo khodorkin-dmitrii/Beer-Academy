@@ -146,7 +146,7 @@ fun ColorBox() {
             MaterialTheme.colorScheme.outlineVariant,
         )
         myColors.forEach {
-            SkeletonItemView(
+            Shimmer(
                 width = 200.dp,
                 height = 200.dp,
                 baseColor = it,
