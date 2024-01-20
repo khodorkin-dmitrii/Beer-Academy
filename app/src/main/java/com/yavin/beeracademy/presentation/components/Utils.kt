@@ -147,10 +147,9 @@ fun ColorBox() {
         )
         myColors.forEach {
             Shimmer(
-                width = 200.dp,
-                height = 200.dp,
                 baseColor = it,
                 modifier = Modifier
+                    .size(200.dp)
                     .padding(horizontal = 8.dp)
                     .clip(RoundedCornerShape(8.dp))
             )

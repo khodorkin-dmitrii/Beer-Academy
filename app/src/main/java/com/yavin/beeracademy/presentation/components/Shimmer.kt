@@ -10,9 +10,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -22,22 +20,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun Shimmer(
-    width: Dp,
-    height: Dp,
     modifier: Modifier = Modifier,
     baseColor: Color = Color.LightGray
 ) {
     Box(
-        modifier
-            .width(width)
-            .height(height)
+        modifier = modifier
     ) {
-        ShimmerBackground(width, height, baseColor)
+        ShimmerBackground(baseColor)
     }
 }
 
@@ -45,21 +38,17 @@ fun Shimmer(
 @Composable
 fun ShimmerBackgroundPreview() {
     ShimmerBackground(
-        width = 90.dp,
-        height = 90.dp,
         baseColor = Color.LightGray
     )
 }
 
 @Composable
 private fun ShimmerBackground(
-    width: Dp,
-    height: Dp,
     baseColor: Color,
 ) {
-    val cardWidthPx = with(LocalDensity.current) { (width).toPx() }
-    val cardHeightPx = with(LocalDensity.current) { (height).toPx() }
-    val gradientWidth: Float = 0.4f * LocalConfiguration.current.screenWidthDp
+    val cardWidthPx = with(LocalDensity.current) { (100.dp).toPx() }
+    val cardHeightPx = with(LocalDensity.current) { (100.dp).toPx() }
+    val gradientWidth: Float = 0.5f * LocalConfiguration.current.screenWidthDp
 
     val infiniteTransition = rememberInfiniteTransition(label = "infiniteTransition")
 
@@ -98,7 +87,6 @@ private fun ShimmerBackground(
         colors = colors,
         xShimmer = xCardShimmer.value,
         yShimmer = yCardShimmer.value,
-        cardHeight = height,
         gradientWidth = gradientWidth
     )
 }
@@ -108,7 +96,6 @@ private fun ShimmerSurface(
     colors: List<Color>,
     xShimmer: Float,
     yShimmer: Float,
-    cardHeight: Dp,
     gradientWidth: Float
 ) {
     val brush = Brush.linearGradient(
@@ -120,8 +107,7 @@ private fun ShimmerSurface(
     Surface {
         Spacer(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(cardHeight)
+                .fillMaxSize()
                 .background(brush = brush)
         )
     }
