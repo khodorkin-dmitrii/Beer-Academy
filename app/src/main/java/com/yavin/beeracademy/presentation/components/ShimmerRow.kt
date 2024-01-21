@@ -40,7 +40,11 @@ fun ShimmerRow() {
     }
 }
 
-@Preview(showBackground = true, device = Devices.NEXUS_5, showSystemUi = true)
+@Preview(
+    showBackground = true,
+    device = Devices.NEXUS_5,
+    showSystemUi = true
+)
 @Composable
 private fun ShimmerRowPreview() {
     ShimmerRow()

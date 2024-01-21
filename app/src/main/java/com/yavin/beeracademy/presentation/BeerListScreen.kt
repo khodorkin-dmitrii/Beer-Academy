@@ -3,6 +3,9 @@ package com.yavin.beeracademy.presentation
 import android.content.res.Configuration
 import android.util.Log
 import android.widget.Toast
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -49,9 +52,7 @@ fun BeerListScreen(
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        if (beers.loadState.refresh is LoadState.Loading) {
-            ShimmerRow()
-        } else {
+        if (beers.loadState.refresh is LoadState.NotLoading) {
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(vertical = 12.dp),
@@ -79,7 +80,13 @@ fun BeerListScreen(
                     }
                 }
             }
+        }
 
+        AnimatedVisibility(
+            visible = beers.loadState.refresh is LoadState.Loading,
+            exit = fadeOut(animationSpec = tween(500))
+        ) {
+            ShimmerRow()
         }
     }
 }

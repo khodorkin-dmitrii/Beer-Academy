@@ -13,24 +13,33 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 
 @Composable
 fun Shimmer(
     modifier: Modifier = Modifier,
     baseColor: Color = Color.LightGray
 ) {
+    var componentWidthPx by remember { mutableIntStateOf(0) }
+    var componentHeightPx by remember { mutableIntStateOf(0) }
     Box(
         modifier = modifier
+            .onGloballyPositioned {
+                componentHeightPx = it.size.height
+                componentWidthPx = it.size.width
+            }
     ) {
-        ShimmerBackground(baseColor)
+        ShimmerBackground(componentWidthPx, componentHeightPx, baseColor)
     }
 }
 
@@ -38,23 +47,22 @@ fun Shimmer(
 @Composable
 fun ShimmerBackgroundPreview() {
     ShimmerBackground(
+        100, 100,
         baseColor = Color.LightGray
     )
 }
 
 @Composable
 private fun ShimmerBackground(
+    componentWidthPx: Int,
+    componentHeightPx: Int,
     baseColor: Color,
 ) {
-    val cardWidthPx = with(LocalDensity.current) { (100.dp).toPx() }
-    val cardHeightPx = with(LocalDensity.current) { (100.dp).toPx() }
-    val gradientWidth: Float = 0.5f * LocalConfiguration.current.screenWidthDp
-
+    val gradientWidth: Float = 0.4f * LocalConfiguration.current.screenWidthDp
     val infiniteTransition = rememberInfiniteTransition(label = "infiniteTransition")
-
     val xCardShimmer = infiniteTransition.animateFloat(
         initialValue = 0f,
-        targetValue = (cardWidthPx + gradientWidth),
+        targetValue = (componentWidthPx + gradientWidth),
         animationSpec = infiniteRepeatable(
             animation = tween(
                 durationMillis = 1100,
@@ -66,7 +74,7 @@ private fun ShimmerBackground(
     )
     val yCardShimmer = infiniteTransition.animateFloat(
         initialValue = 0f,
-        targetValue = (cardHeightPx + gradientWidth),
+        targetValue = (componentHeightPx + gradientWidth),
         animationSpec = infiniteRepeatable(
             animation = tween(
                 durationMillis = 1100,

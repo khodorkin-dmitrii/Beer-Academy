@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         var keepSplashOnScreen = true
-        val delay = 800L
+        val delay = 700L
         installSplashScreen().setKeepOnScreenCondition { keepSplashOnScreen }
         Handler(Looper.getMainLooper()).postDelayed({ keepSplashOnScreen = false }, delay)
         installSplashScreen().setOnExitAnimationListener { splashScreen ->
