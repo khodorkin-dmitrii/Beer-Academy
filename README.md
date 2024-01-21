@@ -1,4 +1,4 @@
-# Beer Academy
+# 🍺Beer Academy🎓 
 
 Ahoy! Another pet project.  
 Client-server application base on https://punkapi.com/
@@ -20,6 +20,8 @@ You can find the latest build in the releases section.
 - **Offline First with Room**
 - Threading with **Coroutines**
 - Paging win **Paging3**
+- Night and Day mode support
+- with dazzling skeleton 💀 views
 
 # To-Do
 
