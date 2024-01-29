@@ -2,7 +2,7 @@
 accompanistSystemuicontroller = "0.27.0"
 activityCompose = "1.8.2"
 androidxComposeBom = "2024.01.00"
-androidGradlePlugin = "8.2.0"
+androidGradlePlugin = "8.2.1"
 androidxActivity = "1.6.1"
 androidxCoreSplashscreen = "1.0.1"
 androidxHiltNavigationCompose = "1.1.0"
@@ -23,7 +23,7 @@ loggingInterceptor = "5.0.0-alpha.3"
 pagingRuntimeKtx = "3.2.1"
 retrofit = "2.9.0"
 roomKtx = "2.6.1"
-uiToolingPreview = "1.5.4"
+uiToolingPreview = "1.6.0-alpha01+"
 
 [libraries]
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
@@ -51,7 +51,6 @@ hilt-android-core = { group = "com.google.dagger", name = "hilt-android", versio
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxCoreSplashscreen" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
-androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-tooling-core = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 
