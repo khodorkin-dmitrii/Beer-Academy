@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -74,11 +73,11 @@ fun BeerListScreen(
                         )
                     }
                 }
-                item {
-                    if (beers.loadState.append is LoadState.Loading) {
-                        CircularProgressIndicator()
-                    }
-                }
+//                item {
+//                    if (beers.loadState.append is LoadState.Loading) {
+//                        CircularProgressIndicator() // TODO replace it
+//                    }
+//                }
             }
         }
 
