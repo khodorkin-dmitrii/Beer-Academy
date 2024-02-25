@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.yavin.beeracademy.domain.Beer
+import com.yavin.beeracademy.presentation.AboutDeveloperScreen
 import com.yavin.beeracademy.presentation.BeerDetailsScreen
 import com.yavin.beeracademy.presentation.BeerDetailsViewModel
 import com.yavin.beeracademy.presentation.BeerListScreen
@@ -57,6 +58,9 @@ fun Navigation() {
                         onBackPress = { navController.popBackStack() })
                 }
             }
+        }
+        composable(route = Screen.AboutDeveloperScreen.route) {
+            AboutDeveloperScreen()
         }
     }
 }

@@ -158,20 +158,20 @@ fun BeerDetailsScreen(
 }
 
 @Composable
-fun ThemeBox(
+private fun ThemeBox(
     modifier: Modifier = Modifier, content: @Composable BoxScope.() -> Unit
 ) {
     val isDarkTheme = isSystemInDarkTheme()
     Box(
         modifier = modifier.background(
-                color = if (isDarkTheme) BlueGray01x50 else BlueGray50,
-                shape = RoundedCornerShape(16.dp)
-            ), content = content
+            color = if (isDarkTheme) BlueGray01x50 else BlueGray50,
+            shape = RoundedCornerShape(16.dp)
+        ), content = content
     )
 }
 
 @Composable
-fun FoodPairing(points: List<String>, isDarkTheme: Boolean = false) {
+private fun FoodPairing(points: List<String>, isDarkTheme: Boolean = false) {
     if (points.isNotEmpty()) {
         Column {
             Text(
